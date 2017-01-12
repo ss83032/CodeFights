@@ -1,0 +1,30 @@
+    String level = readFile(“sys/class/timed_output/vibrator/level”)
+
+    public static String readFile(String file) {
+        FileInputStream is = null;
+        try {
+            is = new FileInputStream(file);
+            int len = is.read(mBuffer);
+            is.close();
+
+            if (len > 0) {
+                int i;
+                for (i = 0; i < len; i++) {
+                    if (mBuffer[i] == '\0') {
+                        break;
+                    }
+                }
+                return new String(mBuffer, 0, i);
+            }
+        } catch (Exception e) {
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (java.io.IOException e) {
+                }
+            }
+
+        }
+        return null;
+    }
