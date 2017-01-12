@@ -1,3 +1,5 @@
+public class FileUtil {
+    public static final String TITLE = "Util";
     public static String writeFile(String file, String s) {
         if (!isExist(file)) {
             Debug.LogE(TITLE, file + " is not exist");
@@ -54,3 +56,4 @@
         }
         return ret;
     }
+}
