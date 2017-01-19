@@ -26,3 +26,22 @@ int maxFraction(std::vector<int> numerators, std::vector<int> denominators) {
     return index;
 }
 
+// Determine if a number can be expressed as a sum of some consecutive positive integers.
+// Input: n = 9
+// Output: isSumOfConsecutive(n) = true, in the following way: 2 + 3 + 4 = 9
+
+bool isSumOfConsecutive(int n) {
+  for (int start = 1; start < n; start++) {
+    int number = n,
+        subtrahend = start;
+    while (number > 0) {
+      number -=  subtrahend;
+      subtrahend++;
+    }
+    if (!number) {
+      return true;
+    }
+  }
+  return false;
+}
+
