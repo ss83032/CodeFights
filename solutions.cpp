@@ -57,3 +57,11 @@ bool isSkewSymmetricMatrix(std::vector<std::vector<int>> matrix) {
     }
     return true;
 }
+
+// Description: Given integers a and b, determine whether the following pseudocode results in an infinite loop
+// Input: a = 2, b = 3
+// Output: isInfiniteProcess(a, b) = true
+boolean isInfiniteProcess(int a, int b) {
+    return a > b ? true : (a - b) % 2 != 0;
+    // return (!(a <= b && ((b-a) % 2) == 0));
+}
