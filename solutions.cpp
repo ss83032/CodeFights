@@ -16,17 +16,13 @@ std::string myConcat(std::vector<std::string> arguments, std::string separator) 
 // Description: Given a list of fractions find the index of the largest one (0-based).
 // Input: numerators = [5, 2, 5] and denominators = [6, 3, 4]
 // Output: maxFraction(numerators, denominators) = 2
-maxFraction(numerators, denominators) = 2.
-Op
 int maxFraction(std::vector<int> numerators, std::vector<int> denominators) {
-    int max_index = 0;
-    float max_fraction = 0;
-    for (int i = 0; i < numerators.size(); i++) {
-        float temp_fraction = (float)(numerators[i]) / denominators[i];
-        if (temp_fraction > max_fraction) {
-            max_fraction = temp_fraction;
-            max_index = i;
+    int index = 0;
+    for (int i = 1; i < numerators.size(); i++) {
+        if (numerators[i] * denominators[index] > numerators[index] * denominators[i]) {
+            index = i;
         }
     }
-    return max_index;
+    return index;
 }
+
