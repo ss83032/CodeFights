@@ -1,2 +1,2 @@
 # CodeFights
-My codefights challanges solutions in C++.
+My codefights challanges solutions written in C++.
