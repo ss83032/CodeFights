@@ -13,7 +13,7 @@ std::string myConcat(std::vector<std::string> arguments, std::string separator) 
     return concatenate;
 }
 
-// Given a list of fractions find the index of the largest one (0-based).
+// Description: Given a list of fractions find the index of the largest one (0-based).
 // Input: numerators = [5, 2, 5] and denominators = [6, 3, 4]
 // Output: maxFraction(numerators, denominators) = 2
 maxFraction(numerators, denominators) = 2.
