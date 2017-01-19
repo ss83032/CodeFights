@@ -26,7 +26,7 @@ int maxFraction(std::vector<int> numerators, std::vector<int> denominators) {
     return index;
 }
 
-// Determine if a number can be expressed as a sum of some consecutive positive integers.
+// Description: Determine if a number can be expressed as a sum of some consecutive positive integers.
 // Input: n = 9
 // Output: isSumOfConsecutive(n) = true, in the following way: 2 + 3 + 4 = 9
 bool isSumOfConsecutive(int n) {
@@ -44,9 +44,9 @@ bool isSumOfConsecutive(int n) {
   return false;
 }
 
-// Determine if a number can be expressed as a sum of some consecutive positive integers.
-// Input: n = 9
-// Output: isSumOfConsecutive(n) = true, in the following way: 2 + 3 + 4 = 9
+// Description: Find out if the given matrix is skew-symmetric.
+// Input: matrix = [[0, 0, 1], [0, 0, -2], [-1, 2, 0]]
+// Output: isSkewSymmetricMatrix(matrix) = true
 bool isSkewSymmetricMatrix(std::vector<std::vector<int>> matrix) {
     for (int i = 0; i < matrix.size(); i++) {
         for (int j = 0; j < matrix.size(); j++) {
