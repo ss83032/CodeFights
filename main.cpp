@@ -1,19 +1,47 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <algorithm> // for copy
+#include <iterator> // for ostream_iterator
 
 using namespace std;
 
 int threeSplit(std::vector<int> a);
 int sequenceElement(std::vector<int> a, int n);
 int sequenceElement_ByCF(std::vector<int> a, int n);
+std::vector<int> prefixFunctionNaive(std::string s);
+
+template<typename T>
+void printVector(const T& t) {
+    std::copy(t.cbegin(), t.cend(), std::ostream_iterator<typename T::value_type>(std::cout, ", "));
+}
+
+template<typename T>
+void printVectorInVector(const T& t) {
+    std::for_each(t.cbegin(), t.cend(), printVector<typename T::value_type>);
+}
+
+template<typename T>
+ostream& operator<< (ostream& out, const vector<T>& v) {
+    out << "[";
+    size_t last = v.size() - 1;
+    for(size_t i = 0; i < v.size(); ++i) {
+        out << v[i];
+        if (i != last)
+            out << ", ";
+    }
+    out << "]";
+    return out;
+}
 
 int main(int argc, char** argv) {
     // cout << "threeSplit=" << threeSplit({-1, 0, -1, 0, -1, 0}) << endl;
     // cout << sequenceElement({1, 2, 3, 4, 5}, 9) << endl;
     // cout << sequenceElement_ByCF({1, 2, 3, 4, 5}, 9) << endl;
+    cout << "prefixFunctionNaive=" << prefixFunctionNaive(string("acacbab")) << endl;
     return 0;
 }
+
 
 std::string myConcat(std::vector<std::string> arguments, std::string separator) {
     std::string concatenate = "";
@@ -43,18 +71,18 @@ int maxFraction(std::vector<int> numerators, std::vector<int> denominators) {
 // Input: n = 9
 // Output: isSumOfConsecutive(n) = true, in the following way: 2 + 3 + 4 = 9
 bool isSumOfConsecutive(int n) {
-  for (int start = 1; start < n; start++) {
-    int number = n,
-        subtrahend = start;
-    while (number > 0) {
-      number -= subtrahend;
-      subtrahend++;
+    for (int start = 1; start < n; start++) {
+        int number = n,
+            subtrahend = start;
+        while (number > 0) {
+            number -= subtrahend;
+            subtrahend++;
+        }
+        if (!number) {
+            return true;
+        }
     }
-    if (!number) {
-      return true;
-    }
-  }
-  return false;
+    return false;
 }
 
 // Description: Find out if the given matrix is skew-symmetric.
@@ -175,3 +203,66 @@ int sequenceElement_ByCF(std::vector<int> a, int n) {
         }
     }
 }
+
+bool findPath(std::vector<std::vector<int>> matrix) {
+    int x = 0, y = 0;
+    int row_size = matrix.size();
+    int col_size = matrix[0].size();
+    int spend = 1;
+    for (int i = 0; i < row_size * col_size; i++) {
+        y = i / col_size;
+        x = i - y * col_size;
+        if (matrix[y][x] == 1) {
+            break;
+        }
+    }
+    cout << "start_point=[" << x << ", " << y << "]" << endl;
+    while (true) {
+        if (y < row_size - 1 && matrix[y][x] == matrix[y + 1][x] - 1) {
+            y++;
+        } else if (y > 0 && matrix[y][x] == matrix[y - 1][x] - 1) {
+            y--;
+        } else if (x < col_size - 1 && matrix[y][x] == matrix[y][x + 1] - 1) {
+            x++;
+        } else if (x > 0 && matrix[y][x] == matrix[y][x - 1] - 1) {
+            x--;
+        } else {
+            return false;
+        }
+        if (++spend == col_size * row_size) {
+            return true;
+        }
+    }
+}
+
+// Description: Return the value of prefix function for a given string.
+// Input: s = "acacbab"
+// Output: prefixFunctionNaive(s) = [0, 0, 1, 2, 0, 1, 0]
+// Refer: https://codefights.com/tournaments/Tyv7kzanqnCnxCggk/A
+std::vector<int> prefixFunctionNaive(std::string s) {
+
+    std::vector<int> result;
+
+    for (int i = 0; i < s.size(); i++) {
+        result.push_back(0);
+        cout << "i=" << i << endl;
+        for (result[i] = i; result[i] >= 0; result[i]--) {
+            cout << "result=" << result << endl;
+            bool matches = true;
+            for (int j = i - result[i] + 1; j <= i; j++) {
+                cout << "s[" << j << "]=" << s[j] << ", ";
+                cout << "s[" << j - i + result[i] - 1 << "]=" << s[j - i + result[i] - 1] << endl;
+                if (s[j] != s[j - i + result[i] - 1]) {
+                    matches = false;
+                    break;
+                }
+            }
+            if (matches) {
+                break; // continue; -> break;
+            }
+        }
+    }
+
+    return result;
+}
+
