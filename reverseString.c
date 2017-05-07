@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-#ifdef __WIN32__ // or whatever
+#ifdef WIN32
 #define SSIZET_FMT "%lu"
 #else
 #define SSIZET_FMT "%zu"
