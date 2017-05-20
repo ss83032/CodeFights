@@ -17,7 +17,7 @@ typedef struct {
 typedef struct {
     int v;
     line_t t;
-    
+
 }note_s;
 
 bool comp_for_max_overlap_length(line_s x, line_s y) {
@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
     line_s line[] = {{.s=3, .e=5}, {.s=2, .e=4}, {.s=5, .e=9},
                      {.s=3, .e=7}, {.s=0, .e=3}, {.s=3, .e=8}};
     size_t n = sizeof(line)/sizeof(line[0]);
-    
+
     for (int i = 0; i < n; i++) {
         printf("%d, %d\n", line[i].s, line[i].e);
     }
@@ -61,7 +61,7 @@ int main(int argc, char** argv) {
         node[(i << 1) + 1].v = line[i].e;
         node[(i << 1) + 1].t = end;
     }
-    
+
     int max_gain = 0;
     int min_v = INT_MAX;
     int max_gain_buy, max_gain_sell, max_gain_buy_position, max_gain_sell_position;
@@ -103,7 +103,7 @@ int main(int argc, char** argv) {
         max_overlap_number = max(count, max_overlap_number);
     }
     printf("max_overlap_number=%d\n\n", max_overlap_number);
-    
+
     sort(line, line + n, comp_for_max_not_overlap_number);
 
     int max_not_overlap_number = 0;
