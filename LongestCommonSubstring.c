@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
     char *MaxSubStringResult = MaxSubString("abractyeyt", "dgdsaeactyey");
     printf("MaxSubString(\"abractyeyt\", \"dgdsaeactyey\")=%s\n", MaxSubStringResult);
     free(MaxSubStringResult);
-  
+
     return 0;
 }
 
@@ -23,10 +23,10 @@ char *MaxSubString(char *str1, char *str2) {
     printf("-----reverseString_Advanced-----\n");
     const size_t  str1Len = strlen(str1);
     const size_t  str2Len = strlen(str2);
-    
+
     int i, j;
-    
-    printf("str1Len="SSIZET_FMT" str2Len="SSIZET_FMT"\n", str1Len, str2Len);    
+
+    printf("str1Len="SSIZET_FMT" str2Len="SSIZET_FMT"\n", str1Len, str2Len);
 
     int longest[str1Len][str2Len];
     for (i = 0; i < str1Len; i++) {
@@ -39,7 +39,7 @@ char *MaxSubString(char *str1, char *str2) {
 
     // Initializing entire 2D array with one value
     memset(longest, 0, sizeof(longest));
-    
+
     for (i = 0; i < str1Len; i++) {
         for (j = 0; j < str2Len; j++) {
             printf("%d ", longest[i][j]);
@@ -66,7 +66,7 @@ char *MaxSubString(char *str1, char *str2) {
             }
         }
     }
-    
+
     for (i = 0; i < str1Len; i++) {
         for (j = 0; j < str2Len; j++) {
             printf("%d ", longest[i][j]);
@@ -74,9 +74,9 @@ char *MaxSubString(char *str1, char *str2) {
         printf("\n");
     }
     printf("\n");
-        
-    char *ret = (char*)malloc(length_max); 
-    
+
+    char *ret = (char*)malloc(length_max);
+
     for (i = i_max - length_max + 1, j = j_max - length_max + 1; i <= i_max && j <= j_max; i++, j++) {
         *ret++ = str1[i];
     }
