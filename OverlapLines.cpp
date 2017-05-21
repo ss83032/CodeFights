@@ -70,6 +70,7 @@ int main(int argc, char** argv) {
         if (min_v > node[i].v) {
             min_v = node[i].v;
             gain_buy_position = i;
+            continue;
         }
 
         int diff = node[i].v - min_v;
