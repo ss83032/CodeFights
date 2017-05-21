@@ -81,7 +81,6 @@ int main(int argc, char** argv) {
             max_gain_buy_position = gain_buy_position;
             max_gain_sell_position = i;
         }
-        printf("min_v=%d\n", min_v);
     }
     printf("max_gain=%d value=(%d,%d) position=(%d,%d)\n\n", max_gain, max_gain_buy, max_gain_sell, max_gain_buy_position, max_gain_sell_position);
 
